@@ -1,0 +1,72 @@
+/* ─── CSS VARIABLES ─── */
+:root {
+  /* Brand blues (from reference) */
+  --brand-primary: #185FA5;
+  --brand-hover: #0C447C;
+  --brand-light: #E6F1FB;
+  --brand-mid: #378ADD;
+  --brand-soft: #B5D4F4;
+
+  /* Backgrounds – light theme */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F7FA;
+  --bg-tertiary: #EEF1F6;
+
+  /* Borders */
+  --border-primary: #D0D7E3;
+  --border-secondary: #E2E8F0;
+  --border-tertiary: #EEF1F6;
+
+  /* Text */
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-tertiary: #9CA3AF;
+  --text-inverse: #FFFFFF;
+
+  /* Status colours */
+  --status-available-bg: #DCFCE7;
+  --status-available-text: #166534;
+  --status-reserved-bg: #FEF3C7;
+  --status-reserved-text: #92400E;
+  --status-loaned-bg: #DBEAFE;
+  --status-loaned-text: #1E40AF;
+  --status-maintenance-bg: #FEE2E2;
+  --status-maintenance-text: #991B1B;
+
+  /* Semantic */
+  --success: #16A34A;
+  --warning: #D97706;
+  --error: #E24B4A;
+  --info: #378ADD;
+
+  /* Radius & spacing */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --gap: 12px;
+
+  /* Typography */
+  --font: 'DM Sans', -apple-system, sans-serif;
+  --mono: 'DM Mono', monospace;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.06);
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font); background: var(--bg-tertiary); color: var(--text-primary); line-height: 1.5; }
+button { cursor: pointer; font-family: var(--font); }
+input, select, textarea { font-family: var(--font); }
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-primary); border-radius: 99px; }
+
+/* ─── UTILITIES ─── */
+.mono { font-family: var(--mono); font-size: 12px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
