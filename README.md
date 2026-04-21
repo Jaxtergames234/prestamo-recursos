@@ -1,112 +1,91 @@
-# GestRes — Sistema de Gestión de Préstamo y Reserva de Recursos
+# 🎓 GestRes
 
-Frontend React listo para conectar con Firebase.
+### Sistema de Gestión de Préstamo y Reserva de Recursos
 
-## Estructura del proyecto
+GestRes es una aplicación web desarrollada en **React** que permite administrar de forma sencilla los recursos institucionales, facilitando su **reserva, préstamo y control** tanto para administradores como para usuarios.
+
+---
+
+## 🚀 ¿Qué hace?
+
+*  Gestión de recursos (salones, laboratorios, equipos)
+*  Sistema de reservas
+*  Control de préstamos y devoluciones
+*  Manejo de usuarios
+*  Panel con métricas y reportes
+*  Autenticación con Firebase
+
+---
+
+##  Estructura del proyecto
 
 ```
 src/
 ├── components/
-│   ├── UI.jsx          # Componentes reutilizables (Button, Card, Modal, Table, etc.)
-│   └── TopNav.jsx      # Barra de navegación superior
+│   ├── UI.jsx          # Componentes reutilizables
+│   └── TopNav.jsx      # Navegación principal
+│
 ├── pages/
-│   ├── admin/
-│   │   ├── Dashboard.jsx      # Panel principal con métricas
-│   │   ├── Resources.jsx      # CRUD de recursos
-│   │   ├── Reservations.jsx   # Gestión de reservas
-│   │   ├── Loans.jsx          # Gestión de préstamos y devoluciones
-│   │   ├── Users.jsx          # CRUD de usuarios
-│   │   └── Reports.jsx        # Reportes y estadísticas
-│   └── user/
-│       ├── Home.jsx           # Inicio / dashboard del usuario
-│       ├── Catalog.jsx        # Catálogo de recursos con reservas
-│       ├── MyReservations.jsx # Mis reservas
-│       └── MyLoans.jsx        # Mis préstamos
+│   ├── admin/          # Panel de administración
+│   │   ├── Dashboard.jsx
+│   │   ├── Resources.jsx
+│   │   ├── Reservations.jsx
+│   │   ├── Loans.jsx
+│   │   ├── Users.jsx
+│   │   └── Reports.jsx
+│   │
+│   └── user/           # Vista del usuario
+│       ├── Home.jsx
+│       ├── Catalog.jsx
+│       ├── MyReservations.jsx
+│       └── MyLoans.jsx
+│
 ├── data/
-│   └── mockData.js     # Datos de prueba → reemplazar con Firebase
+│   └── firebaseService.js  # Conexión con Firebase
+│
 ├── styles/
-│   └── globals.css     # Variables CSS y estilos base
+│   └── globals.css     # Estilos globales
+│
 ├── utils/
-│   └── useToast.js     # Hook para notificaciones
-└── App.jsx             # Enrutamiento principal
+│   └── useToast.js     # Notificaciones
+│
+└── App.jsx             # Lógica principal
 ```
 
-## Instalación y uso
+---
+
+##  Roles del sistema
+
+* **Admin** → Control total del sistema
+* **User** → Consulta, reservas y préstamos
+
+---
+
+##  Tecnologías
+
+* React
+* Firebase (Auth + Firestore)
+* CSS personalizado
+
+---
+
+##  Ejecución
 
 ```bash
 npm install
 npm start
 ```
 
-## Integración con Firebase
+---
 
-### 1. Instalar Firebase
-```bash
-npm install firebase
-```
+##  Notas
 
-### 2. Crear `src/firebase/config.js`
-```js
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+* El sistema está preparado para trabajar con **Firebase**
+* La lógica está separada por módulos para facilitar mantenimiento
+* Diseño enfocado en simplicidad y claridad
 
-const firebaseConfig = {
-  apiKey: "...",
-  authDomain: "...",
-  projectId: "...",
-  // ...
-};
+---
 
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
-export const auth = getAuth(app);
-```
+## Estado del proyecto
 
-### 3. Crear `src/firebase/services.js`
-Reemplaza las importaciones de `mockData.js` con llamadas reales:
-
-```js
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-import { db } from './config';
-
-// Recursos
-export const getResources = () => getDocs(collection(db, 'resources'));
-export const addResource = (data) => addDoc(collection(db, 'resources'), data);
-export const updateResource = (id, data) => updateDoc(doc(db, 'resources', id), data);
-export const deleteResource = (id) => deleteDoc(doc(db, 'resources', id));
-
-// Reservas
-export const getReservations = () => getDocs(collection(db, 'reservations'));
-export const addReservation = (data) => addDoc(collection(db, 'reservations'), data);
-export const updateReservation = (id, data) => updateDoc(doc(db, 'reservations', id), data);
-
-// Préstamos
-export const getLoans = () => getDocs(collection(db, 'loans'));
-export const addLoan = (data) => addDoc(collection(db, 'loans'), data);
-export const updateLoan = (id, data) => updateDoc(doc(db, 'loans', id), data);
-
-// Usuarios
-export const getUsers = () => getDocs(collection(db, 'users'));
-```
-
-### 4. Autenticación
-Reemplaza el selector de roles del `TopNav` con Firebase Auth:
-```js
-import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
-```
-
-## Colecciones Firestore recomendadas
-
-| Colección     | Campos principales                                              |
-|---------------|-----------------------------------------------------------------|
-| `resources`   | name, type, location, capacity, status, description            |
-| `reservations`| resourceId, userId, date, startTime, endTime, purpose, status  |
-| `loans`       | resourceId, userId, loanDate, dueDate, returnDate, status       |
-| `users`       | name, email, role, department, active                           |
-
-## Roles de usuario
-
-- `student` — Estudiante: puede consultar y reservar recursos
-- `teacher` — Docente: puede reservar con prioridad
-- `admin` — Administrador: acceso completo al panel de gestión
+🟢 Funcional — listo para integrar backend y autenticación completa
